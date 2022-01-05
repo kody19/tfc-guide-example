@@ -2,6 +2,13 @@ provider "aws" {
   region = var.region
 }
 
+resource "aws_default_vpc" "default" {
+  tags = {
+    Name = "Default VPC"
+  }
+}
+
+
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -24,12 +31,6 @@ resource "aws_instance" "ubuntu" {
 
   tags = {
     Name = var.instance_name
-  }
-}
-
-resource "aws_default_vpc" "default" {
-  tags = {
-    Name = "Default VPC"
   }
 }
 
